@@ -1,0 +1,31 @@
+.charselect {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    border-color: 5px blue
+}
+
+.chosen {
+    height: 150px;
+    width: 250px;
+    border-color: 5px blue;
+}
+
+.enemie1 {
+    height: 150px;
+    width: 250px;
+    border-color: 5px blue;
+}
+
+.enemie2 {
+    height: 150px;
+    width: 250px;
+    border-color: 5px blue;
+}
+
+.enemie3 {
+    height: 150px;
+    width: 250px;
+    border-color: 5px blue;
+}
+
