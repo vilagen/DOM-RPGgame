@@ -31,44 +31,53 @@
 <div class="row">
   <div class="col-sm-12 col-md-12 col-lg-12">
 
-  <div class="card-deck fighters">
+  <div class="fighters d-inline-flex">
   
 
-  <div class="card w-25 ryu">
+  <div id = ryu class="card chose mx-3" value="120" style="height:200px; width:200px">
      <img class="card-img-top" src="assets/images/ryu.jpg" style="height:90%">
-     <div class="card-text text-center">120HP</div>
+     <div class="card-text text-center">100</div>
     </div>
 
-  <div class="card w-25 chunli">
+  <div class="card chose chunli mx-3" value="100" style="height:200px; width:200px">
     <img class="card-img-top" src="assets/images/chunli.jpg" style="height:90%">
-    <div class="card-text text-center">100HP</div>
+    <div class="card-text text-center"></div>
   </div>
 
-  <div class="card w-25 guile">
+  <div class="card chose guile mx-3" value="150" style="height:200px; width:200px">
     <img class="card-img-top" src="assets/images/Guile.PNG" style="height:90%">
-    <div class="card-text text-center">150HP</div>
+    <div class="card-text text-center"></div>
    </div>
 
-   <div class="card w-25 mbison">
+   <div class="card chose mbison mx-3" value="180" style="height:200px; width:200px">
       <img class="card-img-top" src="assets/images/mbison.jpg" style="height:90%">
-      <div class="card-text text-center">180HP</div>
+      <div class="card-text text-center"></div>
    </div>
 
     </div>
   </div>
 </div>
+
 
 <div class="row">
   <div class="col-sm-12 col-md-12 col-lg-12">
     <p class="h2 text-center">Your Character</p>
-    <div class="chosen"></div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-12 col-md-12 col-lg-12">
-    <div id="chosen">  Placeholder   </div>
+    <div class="chosen"></div>
+  </div>
 </div>
+
+
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <div id="chosen"></div>
+    <br>
+    <div id="HP"> Placeholder </div>
+  </div>
 </div>
 
 
@@ -80,9 +89,8 @@
 
 <div class="row">
     <div class="col-sm-9 col-md-9 col-lg-9">
-        <div id = "enemies">
-            placeholder
-        </div>
+        <div id = "enemies"> </div>
+        <div></div>
     </div>
 </div>
      
@@ -92,7 +100,10 @@
 </div>
 
 <div class="row">
-
+    <div class="col-sm-9 col-md-9 col-lg-9">
+        <p class="h2 text-center">Battle!</p>
+        <div id="battle">  Placeholder  </div>
+    </div>
 </div>
 
 
@@ -101,15 +112,88 @@
 <script type="text/javascript">
     
 // first, need to set command to have the card go to chosen div
-// onclick event
+// onclick event with while statement
+// can change "value" of enemie hp later.
+// remember,there are change and remove class functions.
 
+var choseyourfighter = true
+var fight = false
+var Health = ""
 
 $(document).ready(function () {
-$(".ryu").on("click", function() {
-    $(".chosen").append($(".ryu"))
+
+$(".chose").on("click", function() {
+    if(choseyourfighter) {
+    console.log(this)
+    Health = $(this).val();
+    console.log(Health)
+    $("#chosen").append($(this));
+    $(this).removeClass("chose").addClass("player")
+    console.log(this)
     $("#enemies").append($(".fighters"))
-});
+    $(".chose").removeClass("chose").addClass("rival")
+    choseyourfighter = false;
+    fight = true;
+    console.log(fight)
+    }
 })
+
+$(document).on("click", "div.rival", function() {
+    if(fight) {
+    $("#battle").append($(this));
+    console.log("Work!")
+    }
+})
+
+})
+
+
+
+
+// $(".ryu").on("click", function() {
+//     if(choseyourfighter) {
+//     $("#chosen").append($(".ryu"));
+//     $(".HP").append($(this).val());
+//     $("#enemies").append($(".fighters"));
+//     choseyourfighter = false;
+//     fight = true;
+//   }
+// });
+
+// $(".chunli").on("click", function() {
+//     if(choseyourfighter = true) {
+//     $("#chosen").append($(".chunli"));
+//     $(".HP").append($(this).val());
+//     $("#enemies").append($(".fighters"));
+//     choseyourfighter = false;
+//     fight = true;
+//   }
+// });
+
+
+// if(choseyourfighter = true) {
+//     $(".guile").on("click", function() {
+//     $("#chosen").append($(".guile"));
+//     $(".HP").append($(this).val());
+//     $("#enemies").append($(".fighters"));
+//     choseyourfighter = false;
+//     fight = true;
+//   });
+// }
+
+// if(choseyourfighter = true) {
+// $(".mbison").on("click", function() { 
+//     $("#chosen").append($(".mbison"));
+//     $(".HP").append($(this).val());
+//     $("#enemies").append($(".fighters"));
+//     choseyourfighter = false;
+//     fight = true;
+//   });
+// }
+
+
+
+
 
 </script>
 
