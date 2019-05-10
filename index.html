@@ -34,7 +34,7 @@
   <div class="fighters d-inline-flex">
   
 
-  <div id = ryu class="card chose mx-3" value="120" style="height:200px; width:200px">
+  <div id="ryu" class="card chose mx-3" name="ryu" style="height:200px; width:200px">
      <img class="card-img-top" src="assets/images/ryu.jpg" style="height:90%">
      <div class="card-text text-center">100</div>
     </div>
@@ -96,7 +96,7 @@
      
 
 <div class="row">
-    <button type="button">Fight!</button>
+    <button id="fight" type="button">Fight!</button>
 </div>
 
 <div class="row">
@@ -116,36 +116,95 @@
 // can change "value" of enemie hp later.
 // remember,there are change and remove class functions.
 
+var characters = {
+  ryu: {
+    name: 'Ryu',
+    hp: 120,
+    attack: 5,
+    IncreaseAttack: 5,
+  },
+  chunLi: {
+    name: 'Chun-Li',
+    hp: 100,
+    attack: 10,
+    InceaseAttack: 5
+  },
+  guile: {
+    name: 'Guile',
+    hp: 150,
+    attack: 20,
+    InceaseAttack: 2
+  },
+  mbison: {
+    name: 'M-Bison',
+    hp: 180,
+    attack: 30,
+    InceaseAttack: 0
+  }
+};
+
+var rivals = {
+  ryu: {
+    name: 'Ryu',
+    hp: 120,
+    counter: 5,
+  },
+  chunLi: {
+    name: 'Chun-Li',
+    hp: 100,
+    counter: 4,
+  },
+  guile: {
+    name: 'Guile',
+    hp: 150,
+    counter: 15,
+  },
+  mbison: {
+    name: 'M-Bison',
+    hp: 180,
+    counter: 25,
+  }
+};
+
+
 var choseyourfighter = true
 var fight = false
-var Health = ""
+var selectedCharacter = null;
 
 $(document).ready(function () {
 
+  // choose a fighter and move it to chosen
 $(".chose").on("click", function() {
     if(choseyourfighter) {
-    console.log(this)
-    Health = $(this).val();
-    console.log(Health)
-    $("#chosen").append($(this));
-    $(this).removeClass("chose").addClass("player")
-    console.log(this)
-    $("#enemies").append($(".fighters"))
-    $(".chose").removeClass("chose").addClass("rival")
-    choseyourfighter = false;
-    fight = true;
-    console.log(fight)
+      characterVal = $(this).attr('name');
+      console.log(characterVal)
+
+      selectedCharacter = characters[characterVal];
+      Health = selectedCharacter.hp
+      console.log(selectedCharacter);
+      $("#chosen").append($(this));
+      $("#HP").text(Health)
+      console.log(Health)
+
+      $(this).removeClass("chose").addClass("player")
+
+      $("#enemies").append($(".fighters"))
+      $(".chose").removeClass("chose").addClass("rival")
+
+      choseyourfighter = false;
+      fight = true;
     }
 })
-
+// select an enemy and move it to the #battle div
 $(document).on("click", "div.rival", function() {
-    if(fight) {
+    if(!choseyourfighter) {
     $("#battle").append($(this));
     console.log("Work!")
+    fight = false;
     }
-})
+});
 
-})
+});
 
 
 
