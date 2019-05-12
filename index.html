@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <link rel="stylesheet" href="assets/css/style.css">
     <script type ="text/javascript" src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script>
 </head>
 
@@ -23,7 +23,7 @@
 
 <div class="row">
   <div class= "col-sm-12 col-md-12 col-lg-12">
-    <p class="h2 text-center">Choose Your Fighter</p>
+    <p id = "CYF" class="h2 text-center">Choose Your Fighter</p>
   </div>
 </div>
 
@@ -31,80 +31,103 @@
 <div class="row">
   <div class="col-sm-12 col-md-12 col-lg-12">
 
+  <div id = "rooster" class = "d-inline-flix">
+  
   <div class="fighters d-inline-flex">
   
 
   <div id="ryu" class="card choose mx-3" name="ryu" style="height:200px; width:200px">
+      <div class="list-group-item text-center">Ryu</div>
      <img class="card-img-top" src="assets/images/ryu.jpg" style="height:90%">
-     <div class="card-text text-center">100</div>
-    </div>
+      <li class="list-group-item text-center">140</li>
+  </div>
 
   <div id="chunLi" class="card choose mx-3" name="chunLi" style="height:200px; width:200px">
+    <div class="list-group-item text-center">Chun-Li</div>
     <img class="card-img-top" src="assets/images/chunli.jpg" style="height:90%">
-    <div class="card-text text-center"></div>
+    <li class="list-group-item text-center">110</li>
   </div>
 
   <div id="guile" class="card choose mx-3" name="guile" style="height:200px; width:200px">
+    <div class="list-group-item text-center">Guile</div>
     <img class="card-img-top" src="assets/images/Guile.PNG" style="height:90%">
-    <div class="card-text text-center"></div>
+    <li class="list-group-item text-center">150</li>
    </div>
 
    <div id = mbison class="card choose mx-3" name="mbison" style="height:200px; width:200px">
+      <div class="list-group-item text-center">M. Bison</div>
       <img class="card-img-top" src="assets/images/mbison.jpg" style="height:90%">
-      <div class="card-text text-center"></div>
+      <li class="list-group-item text-center">180</li>
    </div>
 
+      </div> 
     </div>
   </div>
 </div>
 
 
 <div class="row">
-  <div class="col-sm-12 col-md-12 col-lg-12">
-    <p class="h2 text-center">Your Character</p>
+
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <p id = "label1" class="h2 text-center">Your Character</p>
   </div>
+
+  <div class="col-sm-4 col-md-4 col-lg-4"></div>
+
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <p id = "label2" class="h2 text-center">Challenger</p>
+  </div>
+
 </div>
 
-<div class="row">
-  <div class="col-sm-12 col-md-12 col-lg-12">
-    <div class="chosen"></div>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-sm-12 col-md-12 col-lg-12">
+<div id = arena class="row">
+  <div class="col-sm-4 col-md-4 col-lg-4">
     <div id="chosen"></div>
-    <div id="HP"> Placeholder </div>
+  </div>
+
+  <div class="col-sm-4 col-md-4 col-lg-4">
+      <p id = "VS" class="h2 text-center">VS</p>
+  </div>
+
+   <div class="col-sm-4 col-md-4 col-lg-4">
+      <div id="battle"> </div>
   </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-9 col-md-9 col-lg-9">
-        <p class="h2 text-center">Battle!</p>
-        <div id="battle"> </div>
-        <div id="RivalHP"> </div>
-    </div>
-</div>
 
+  
 <div class="row">
-    <button id="fight" type="button">Fight!</button>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <p id = "charattack" class =  "text-center"> </p>
+    </div>
+    
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <button id="fight" type="button">Fight!</button>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <p id = "counterattack" class = "text-center"> </p>
+    </div>
+
 </div>
 
 <div class="row">
   <div class="col-sm-12 col-md-12 col-lg-12">
-    <p class="h2 text-center">Enemies to Defeat!!</p>
+    <p id = "EtD" class="h2 text-center">Enemies to Defeat!!</p>
   </div>
 </div>
 
 <div class="row">
     <div class="col-sm-9 col-md-9 col-lg-9">
-        <div id = "enemies"> </div>
+        <div id = "rivals"> </div>
         <div></div>
     </div>
 </div>
      
 </div>
+
+<div id = hidden></div>
 
 <script type="text/javascript">
     
@@ -116,52 +139,34 @@
 var characters = {
   ryu: {
     name: 'Ryu',
-    hp: 125,
+    hp: 140,
     attack: 10,
     increaseAttack: 5,
+    counter: 5
   },
   chunLi: {
     name: 'Chun-Li',
-    hp: 100,
+    hp: 110,
     attack: 9,
-    increaseAttack: 7
+    increaseAttack: 8,
+    counter: 4
   },
   guile: {
     name: 'Guile',
     hp: 150,
     attack: 25,
-    increaseAttack: 3
+    increaseAttack: 3,
+    counter: 10
   },
   mbison: {
     name: 'M-Bison',
     hp: 180,
     attack: 30,
-    increaseAttack: 0
+    increaseAttack: 0,
+    counter: 25
   }
 };
 
-var rivals = {
-  ryu: {
-    name: 'Ryu',
-    hp: 120,
-    counter: 5,
-  },
-  chunLi: {
-    name: 'Chun-Li',
-    hp: 100,
-    counter: 4,
-  },
-  guile: {
-    name: 'Guile',
-    hp: 150,
-    counter: 10,
-  },
-  mbison: {
-    name: 'M-Bison',
-    hp: 180,
-    counter: 25,
-  }
-};
 
 // setting some variables
 // while true, choseyourfighter allows you to choose a character
@@ -174,6 +179,7 @@ var battle = false
 var selectedCharacter = null;
 var rivalCharacter = null;
 var remainingRivals = null;
+var firstattack = true
 // var remainingHP = null;
 // var attack = null;
 
@@ -181,39 +187,53 @@ $(document).ready(function () {
 
   // choose a fighter and move it to chosen
 $(".choose").on("click", function() {
+
     if(chooseyourfighter) {
       characterVal = $(this).attr('name');
-      console.log(characterVal)
-
       selectedCharacter = characters[characterVal];
-      Health = selectedCharacter.hp
-      console.log(selectedCharacter);
       $("#chosen").append($(this));
-      $("#HP").text(Health);
-      console.log(Health);
+      $("#CYF").hide()
 
+      // set parameters to make chosen player's character seperate from other characters.
       $(this).removeClass("choose").addClass("player");
 
-      $("#enemies").append($(".fighters"));
-      $(".choose").removeClass("choose").addClass("rival");
+      // set parameters to make player's HP seperate from other characters.
+      $(this).find("li").addClass("playerHP")
+      $(".playerHP").text(selectedCharacter.hp)
+
+      // set parameters to make other characters in a different catagory an place them in rival pool.
+      $("#rivals").append($(".fighters"));
+      $(".choose").removeClass("choose").addClass("rival"); // check on this for HP value
       remainingRivals = $(".rival").length
-      console.log(remainingRivals)
+
+      $("#label1").show()
+      $("#label2").show()
+      $("#VS").show()
+      $("#EtD").show()
+
+      // choose your fighter is false, because player is no longer choosing fighter.
       chooseyourfighter = false;
     }
 })
+  
+
 // select an enemy and move it to the #battle div
 $(document).on("click", "div.rival", function() {
     if(!chooseyourfighter && !battle) {
+    
+     // find rival's "name" so it can be applied from the rival list.
      rivalVal = $(this).attr('name');
-     console.log(rivalVal);
+      
+     // apply who the rival character is from the characters' object
+     rivalCharacter = characters[rivalVal];
      
-     rivalCharacter = rivals[rivalVal];
-     rivalHealth = rivalCharacter.hp
-     
+     // place the rival on the battle div, and added RivalHP to provide a way to show HP value on that Div.
      $("#battle").append($(this));
-     $("#RivalHP").text(rivalHealth)
      $(this).removeClass("rival").addClass("opponent")
-     console.log(this)
+     $(this).find("li").addClass("RivalHP")
+
+      
+     $(".RivalHP").text(rivalCharacter.hp)
      battle = true;
     }
 });
@@ -223,38 +243,69 @@ $(document).on("click", "div.rival", function() {
 
 $("#fight").on("click", function() {
   if (battle && !chooseyourfighter) {
-   
-    console.log(selectedCharacter)
-    console.log(rivalCharacter)
-    console.log(selectedCharacter.hp - rivalCharacter.counter)
-    console.log(rivalCharacter.hp - selectedCharacter.attack)
+    
+    // values for what happens when characters attack each other
+
+    console.log(remainingRivals)
+
+    if (firstattack) {
+    selectedCharacter.hp -= rivalCharacter.counter
+    rivalCharacter.hp -= selectedCharacter.attack
+    firstattack = false
+    }  
+
+    else {
     selectedCharacter.hp -= rivalCharacter.counter
     rivalCharacter.hp -= selectedCharacter.attack
     selectedCharacter.attack += selectedCharacter.increaseAttack
-    console.log(selectedCharacter.hp)
-    console.log(selectedCharacter.attack)
-    console.log(rivalCharacter.hp)
+    }
+
+    
+    $(".playerHP").text(selectedCharacter.hp)
+    $(".RivalHP").text(rivalCharacter.hp)
+    $("#charattack").text(selectedCharacter.name + " attacks for " + selectedCharacter.attack)
+    $("#counterattack").text(rivalCharacter.name + " attacks for " + rivalCharacter.attack)
 
     if(rivalCharacter.hp <= 0) {
-      $('#battle').empty()
-      console.log("You Win");
+      $("#hidden").append($(".opponent"));
+      $("#charattack").empty()
+      $("#counterattack").empty()
       remainingRivals--;
       battle = false;
       console.log(battle)
-      console.log(rivalCharacter)
+      console.log(remainingRivals)
     }
+        if(remainingRivals === 0) {
+          alert("Congratulations! You won! Hit 'OK' to play again!")
+          $(".player").find("li").removeClass("playerHP")
+          $(".rival").find("li").removeClass("RivalHP")
+          $(".player").removeClass("player").addClass("choose")
+          $(".opponent").removeClass("opponent").addClass("choose")
+          // manually putting back each fighter in order, since very possible can be put back in random order.
+          $(".fighters").append($("#ryu"))
+          $(".fighters").append($("#chunLi"))
+          $(".fighters").append($("#guile"))
+          $(".fighters").append($("#mbison"))
+          $("#rooster").append($(".fighters"))
+          $("#CYF").show()
+          battle = false
+          chooseyourfighter = true 
+          }
 
     else if(selectedCharacter.hp <=0) {
-      $("#chosen").empty()
+      $("#chosen").detach()
       console.log("You Lose")
     }
-  
-  else {}
-  
-    console.log(battle)
   }
 
 })
+
+// function for when player wins
+
+$(document).ready(function() {
+
+})
+
 
 });
 

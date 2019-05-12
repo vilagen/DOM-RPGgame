@@ -1,31 +1,27 @@
-.charselect {
-    position: relative;
-    height: 200px;
-    width: 200px;
-    border-color: 5px blue
+#arena {
+    height: 300px
 }
 
-.chosen {
-    height: 150px;
-    width: 250px;
-    border-color: 5px blue;
+#roster{
+    height: 300px
 }
 
-.enemie1 {
-    height: 150px;
-    width: 250px;
-    border-color: 5px blue;
+#label1 {
+    display: none
 }
 
-.enemie2 {
-    height: 150px;
-    width: 250px;
-    border-color: 5px blue;
+#label2 {
+    display: none
 }
 
-.enemie3 {
-    height: 150px;
-    width: 250px;
-    border-color: 5px blue;
+#VS {
+    display: none
 }
 
+#EtD {
+    display: none
+}
+
+#hidden {
+    display: none
+}
