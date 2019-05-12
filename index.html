@@ -39,31 +39,33 @@
   <div id="ryu" class="card choose mx-3" name="ryu" style="height:200px; width:200px">
       <div class="list-group-item text-center">Ryu</div>
      <img class="card-img-top" src="assets/images/ryu.jpg" style="height:90%">
-      <li class="list-group-item text-center">140</li>
+      <li id = "ryuHP" class="list-group-item text-center">150</li>
   </div>
 
   <div id="chunLi" class="card choose mx-3" name="chunLi" style="height:200px; width:200px">
     <div class="list-group-item text-center">Chun-Li</div>
     <img class="card-img-top" src="assets/images/chunli.jpg" style="height:90%">
-    <li class="list-group-item text-center">110</li>
+    <li id = "chunLiHP" class="list-group-item text-center">140</li>
   </div>
 
   <div id="guile" class="card choose mx-3" name="guile" style="height:200px; width:200px">
     <div class="list-group-item text-center">Guile</div>
     <img class="card-img-top" src="assets/images/Guile.PNG" style="height:90%">
-    <li class="list-group-item text-center">150</li>
+    <li id ="guileHP" class="list-group-item text-center">175</li>
    </div>
 
    <div id = mbison class="card choose mx-3" name="mbison" style="height:200px; width:200px">
       <div class="list-group-item text-center">M. Bison</div>
       <img class="card-img-top" src="assets/images/mbison.jpg" style="height:90%">
-      <li class="list-group-item text-center">180</li>
+      <li id = "mbisonHP" class="list-group-item text-center">200</li>
    </div>
 
       </div> 
     </div>
   </div>
 </div>
+
+
 
 
 <div class="row">
@@ -139,33 +141,34 @@
 var characters = {
   ryu: {
     name: 'Ryu',
-    hp: 140,
+    hp: 150,
     attack: 10,
     increaseAttack: 5,
     counter: 5
   },
   chunLi: {
     name: 'Chun-Li',
-    hp: 110,
-    attack: 9,
+    hp: 140,
+    attack: 12,
     increaseAttack: 8,
     counter: 4
   },
   guile: {
     name: 'Guile',
-    hp: 150,
+    hp: 175,
     attack: 25,
     increaseAttack: 3,
     counter: 10
   },
   mbison: {
     name: 'M-Bison',
-    hp: 180,
+    hp: 200,
     attack: 30,
-    increaseAttack: 0,
+    increaseAttack: 2,
     counter: 25
   }
 };
+
 
 
 // setting some variables
@@ -180,10 +183,68 @@ var selectedCharacter = null;
 var rivalCharacter = null;
 var remainingRivals = null;
 var firstattack = true
+var gameover = false
 // var remainingHP = null;
 // var attack = null;
 
+function resetall() {
+          $(".playerHP").empty()
+          $(".rivalHP").empty()
+          $(".player").find("li").removeClass("playerHP")
+          $(".opponent").find("li").removeClass("RivalHP")
+          $(".player").removeClass("player").addClass("choose")
+          $(".opponent").removeClass("opponent").addClass("choose")
+          // manually putting back each fighter in order, since very possible can be put back in random order.
+          $(".fighters").append($("#ryu"))
+          $(".fighters").append($("#chunLi"))
+          $(".fighters").append($("#guile"))
+          $(".fighters").append($("#mbison"))
+          $("#rooster").append($(".fighters"))
+          $("#CYF").show()
+          $("#label1").hide()
+          $("#label2").hide()
+          $("#VS").hide()
+          $("#EtD").hide()
+          firstattack = true
+          battle = false
+          chooseyourfighter = true 
+
+          // I realized after looking at the fridge excercise again, 
+          // I could have made each of those objects in a for loop and create my roster
+          // that way. But I was already too far into this task and too close to the deadline.
+          // Also, I wasn't sure on how else to reset values except to manually do so.
+
+          // reset ryu's values
+          characters.ryu.hp = 150
+          characters.ryu.attack = 10
+          $("#ryuHP").text("150") // only way I could think of showing the 140 for how code is now.
+
+          characters.chunLi.hp = 140
+          characters.chunLi.attack = 12
+          $("#chunLiHP").text("140")
+
+          characters.guile.hp = 175
+          characters.guile.attack = 25
+          $("#guileHP").text("175")
+
+          characters.mbison.hp = 200
+          characters.ryu.attack = 30
+          $("#mbisonHP").text("200")
+
+          // I had a bug earlier that characters would inherit attack stats they shouldn't have
+          // when the game restart.
+          // I think this fixed it, tested a few times, didn't notice issue.
+          var selectedCharacter = null;
+          var rivalCharacter = null;
+          var remainingRivals = null;
+
+          console.log(selectedCharacter)
+          console.log(rivalCharacter)
+}
+
+
 $(document).ready(function () {
+
 
   // choose a fighter and move it to chosen
 $(".choose").on("click", function() {
@@ -264,47 +325,36 @@ $("#fight").on("click", function() {
     $(".playerHP").text(selectedCharacter.hp)
     $(".RivalHP").text(rivalCharacter.hp)
     $("#charattack").text(selectedCharacter.name + " attacks for " + selectedCharacter.attack)
-    $("#counterattack").text(rivalCharacter.name + " attacks for " + rivalCharacter.attack)
+    $("#counterattack").text(rivalCharacter.name + " attacks for " + rivalCharacter.counter)
 
-    if(rivalCharacter.hp <= 0) {
+    if(selectedCharacter.hp <=0) {
+      alert("You Lose. Game over!")
+      $("#hidden").append($(".player"))
+      $("#charattack").empty()
+      $("#counterattack").empty()
+      resetall()
+    }
+
+    else if(rivalCharacter.hp <= 0) {
       $("#hidden").append($(".opponent"));
       $("#charattack").empty()
       $("#counterattack").empty()
       remainingRivals--;
       battle = false;
-      console.log(battle)
       console.log(remainingRivals)
-    }
-        if(remainingRivals === 0) {
-          alert("Congratulations! You won! Hit 'OK' to play again!")
-          $(".player").find("li").removeClass("playerHP")
-          $(".rival").find("li").removeClass("RivalHP")
-          $(".player").removeClass("player").addClass("choose")
-          $(".opponent").removeClass("opponent").addClass("choose")
-          // manually putting back each fighter in order, since very possible can be put back in random order.
-          $(".fighters").append($("#ryu"))
-          $(".fighters").append($("#chunLi"))
-          $(".fighters").append($("#guile"))
-          $(".fighters").append($("#mbison"))
-          $("#rooster").append($(".fighters"))
-          $("#CYF").show()
-          battle = false
-          chooseyourfighter = true 
-          }
+    }          
 
-    else if(selectedCharacter.hp <=0) {
-      $("#chosen").detach()
-      console.log("You Lose")
-    }
+      if(remainingRivals === 0) {
+        alert("Congratulation! You Win!")
+        $("#hidden").append($(".opponent"));
+        resetall()
+      }
   }
-
 })
 
-// function for when player wins
 
-$(document).ready(function() {
 
-})
+
 
 
 });
