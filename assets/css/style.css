@@ -1,9 +1,20 @@
+body {
+    background-image: url("../images/streetfighterbg.jpg")
+}
+
+h1 {
+    color: orange
+}
+
 #arena {
     height: 300px
 }
 
 #roster{
-    height: 300px
+    height: 300px;
+    border-style: double;
+    padding: 9px 0
+
 }
 
 #label1 {
@@ -18,10 +29,19 @@
     display: none
 }
 
+#fight {
+    display: none
+}
+
 #EtD {
     display: none
 }
 
 #hidden {
     display: none
+}
+
+#rivals {
+    height: 300px;
+    padding: 9px 0;
 }
