@@ -1,6 +1,8 @@
-# unit-4-game
+# RPG Game
 
 Thank you for playing my Street Fighter RPG! 
+
+This project was made as a way to help understand how to manipulate the DOM, and was done using Javascript and jQuery.
 
 In this game you start by choosing from 1 of 4 characters.
 
@@ -24,3 +26,5 @@ build up your own attack stat.
 To start a fight, first choose your character. Then choose the first opponent
 you wish to challenge. Then the "Fight" button will appear. Click the button
 to attack the opponent.
+
+#
